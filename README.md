@@ -22,7 +22,7 @@
 - jquery
 - bootstrap
 
-### Features
+### Features   (*sg - stretch goals)
 - chatroom
   - chat
   - save chats (sg)
