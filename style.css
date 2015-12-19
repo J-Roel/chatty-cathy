@@ -53,7 +53,7 @@ button {
 #emailInput {
   margin-top: 1em;
   height: 7vh;
-  width: 25vw;
+  width: 20vw;
   background: rgba(40, 40, 40, 0.8);
   color: #D0D0D0;
   font-family: "Gill Sans";
@@ -71,6 +71,17 @@ button {
 }
 
 #joinChatSubmit {
+  border: .2rem outset #66CD00;
+  margin-left: 2em;
+  width: 5vw;
+  height: 7vh;
+  background: rgba(40, 40, 40, 0.8);
+  color: #66CD00;
+  font-family: "Gill Sans";
+  display: none;
+}
+
+#createChatSubmit {
   border: .2rem outset #66CD00;
   margin-left: 2em;
   width: 5vw;

@@ -77,6 +77,7 @@ $('#create-button').on('click', function() {
   $('#create-button').text(keyCode);
     $(this).prop('disabled', true);
     $('#emailInput').show();
+    $('#createChatSubmit').show();
   $('#create-button').css({'color':'#66CD00'});
   //$('#create-button').replaceWith("<p class='keyField'>" + keyCode + "</p>")
 });
