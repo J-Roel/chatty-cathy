@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-canvasWidth = '1000px';
-canvasHeight = '1000px';
+canvasWidth = '0';
+canvasHeight = '0';
 
 var canvasDiv = document.getElementById('canvasDiv');
 canvas = document.createElement('canvas');
@@ -12,7 +12,6 @@ canvasDiv.appendChild(canvas);
 if(typeof G_vmlCanvasManager != 'undefined') {
 	canvas = G_vmlCanvasManager.initElement(canvas);
 }
-
    
    var mouse = { 
       click: false,
@@ -32,6 +31,7 @@ if(typeof G_vmlCanvasManager != 'undefined') {
    canvas.onmousedown = function(e){
       mouse.click = true;
    };
+
    canvas.onmouseup = function(e){
       mouse.click = false;
    };
@@ -39,6 +39,7 @@ if(typeof G_vmlCanvasManager != 'undefined') {
    canvas.onmousemove = function(e) {
       mouse.pos.x = e.clientX / width;
       mouse.pos.y = e.clientY / height;
+      
       mouse.move = true;
    };
 
@@ -51,7 +52,7 @@ if(typeof G_vmlCanvasManager != 'undefined') {
       context.stroke();
    });
 
-    function mainLoop() {
+   function mainLoop() {
       if (mouse.click && mouse.move && mouse.pos_prev) {
          socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev ] });
          mouse.move = false;
@@ -60,6 +61,9 @@ if(typeof G_vmlCanvasManager != 'undefined') {
       setTimeout(mainLoop, 25);
    }
    mainLoop();
+});
 
 
+$( "#clear" ).click(function() {
+  line_history = [];
 });
