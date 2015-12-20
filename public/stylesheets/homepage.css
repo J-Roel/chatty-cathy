@@ -1,17 +1,21 @@
 body {
-  background-image: url('https://images.unsplash.com/photo-1416615267350-a82c5a347dbf?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=44182812c263a852cb821834a8976242');
+  background-image: url('https://images.unsplash.com/photo-1418225162054-0f773a996f9e?crop=entropy&fit=crop&fm=jpg&h=800&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1225');
   background-size: 100%;
   background-repeat: no-repeat;
 }
 
 .title {
   text-align: center;
-  color: black;
+  color: white;
   font-weight: bold;
 }
 
 .empty-row {
   padding: 2em;
+}
+
+#emptyRow1 {
+  padding: 1em;
 }
 
 h1 {
@@ -26,7 +30,7 @@ button {
   font-family: "Gill Sans";
   text-align: center;
   border-radius: 2rem;
-  background: rgba(40, 40, 40, 0.8);
+  background: rgba(50, 50, 50, 0.8);
   color: #D0D0D0;
 }
 
@@ -55,8 +59,9 @@ button {
   height: 7vh;
   width: 20vw;
   background: rgba(40, 40, 40, 0.8);
-  color: #D0D0D0;
+  color: #66CD00;
   font-family: "Gill Sans";
+  font-size: 1.2em;
   display: none;
 }
 
@@ -65,8 +70,9 @@ button {
   height: 7vh;
   width: 20vw;
   background: rgba(40, 40, 40, 0.8);
-  color: #D0D0D0;
+  color: #66CD00;
   font-family: "Gill Sans";
+  font-size: 1.2em;
   display: none;
 }
 
