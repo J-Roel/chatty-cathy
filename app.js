@@ -66,4 +66,44 @@ app.use(function(err, req, res, next) {
   });
 });
 
+//------------------------------------------------------------------------------
+
+//Connect to postgres via knex
+//You need to install and save knex and pg to your project
+//replace the appropriate variables such as user and db name
+var knex = require('knex')({
+  client: 'pg', //we will be using pg to connect to postgres
+  connection: {
+    host: '127.0.0.1', //localhost server
+    port: 5432, //default pg server port
+    user: 'zachbuchenau', //your username
+    database: 'chattycathy' //yourdatabase name
+  }
+});
+
+//Define a function to get our table
+var chatRoom = function(){
+   return  knex('chatrooms');
+};
+
+//insert a monkey into our table
+chatRoom().insert({
+  key_code: '******',//TODO
+}).then(function(key) { //this is the callback function that gets called when we successfully insert a monkey
+  console.log(key);
+}).catch(function(err) { //this is the callback function that gets called when we fail
+  console.error(err);
+});
+
+//select a monkey from our table
+//this will retrieve all puppies who have email equal to curiousgeorge
+chatRoom().where({
+  key_code: '******'//TODO
+}).then(function(monkey) {//this is the callback function that gets called when we successfully retrieve monkeys
+  //monkey is an array of all selected monkeys.
+  console.log(monkey);
+}).catch(function(err){
+  console.error(err);
+});
+
 module.exports = app;

@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var keyCode = require('../javascripts/homepage.js');
+// var keyCode = require('../public/javascripts/homepage');
 
-console.log(keyCode.key());
+// console.log(keyCode.key());
 
 
 
