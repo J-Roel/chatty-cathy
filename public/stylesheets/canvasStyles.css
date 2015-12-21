@@ -15,10 +15,7 @@ body {
 	border: 4px solid #000;
 	overflow: scroll;
 }
-canvas {
-	width:1000px;
-	height:1000px;
-}
+
 header{
 
 }
@@ -93,4 +90,13 @@ form button {
 
 #canvasDiv {
 	border-radius: 2rem;
+}
+
+
+
+/*Palette*/
+.color {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
 }
