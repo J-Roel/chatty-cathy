@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 'use strict';
 
-
    //build palette
    var clientColor;
    buildPalette();
@@ -20,6 +19,7 @@ var width   = document.querySelector('#canvasDiv').scrollWidth;
 var height  = document.querySelector('#canvasDiv').scrollHeight;
    
    var mouse = { 
+
       click: false,
       move: false,
       pos: {x:0, y:0},
@@ -27,11 +27,13 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
    };
 
    var context = canvas.getContext('2d');
-   
+
+   var width   = document.querySelector('#canvasDiv').scrollWidth;
+   var height  = document.querySelector('#canvasDiv').scrollHeight;
    var socket  = io.connect();
 
    canvas.width = width * 2;
-   canvas.height = height* 2;
+   canvas.height = height * 2;
 
    canvas.onmousedown = function(e){
       mouse.click = true;
@@ -44,10 +46,6 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
    canvas.onmousemove = function(e) {
       mouse.pos.x = e.offsetX / width;
       mouse.pos.y = e.offsetY / height;
-      // mouse.pos.x = e.offsetX;
-      // mouse.pos.y = e.offsetY;
-      // console.log(e.clientX, e.clientY);
-
       mouse.move = true;
    };
 

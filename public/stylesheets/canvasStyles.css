@@ -14,11 +14,9 @@ body {
 	height: 80vh;
 	border: 4px solid #000;
 	overflow: scroll;
+	border-radius: 2rem;
 }
 
-header{
-
-}
 h1 {
 	font-family: "Gill Sans";
 	color: #D0D0D0;
@@ -43,7 +41,7 @@ form input {
 	color: #000;
 	border: 0;
 	padding: 10px;
-	width: 85%;
+	width: 84%;
 	border-bottom-left-radius: 2rem;
 	margin-top: 5px;
 }
@@ -56,6 +54,7 @@ form button {
 	border: none;
 	padding: 10px;
 	border-bottom-right-radius: 2rem;
+	margin-left: 1%;
 }
 #messages {
 	list-style-type: none;
@@ -87,12 +86,6 @@ form button {
 	background-color: rgb(130, 224, 255);
 	border-radius: .5rem;
 }
-
-#canvasDiv {
-	border-radius: 2rem;
-}
-
-
 
 /*Palette*/
 .color {
