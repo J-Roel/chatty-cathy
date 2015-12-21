@@ -3,31 +3,32 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script>
-		var socket = io();
-		$('form').submit(function(){
-			socket.emit('chat message', $('#m').val());
-			$('#m').val('');
-			return false;
-		});
-		socket.on('chat message', function(msg){
-			$('#messages').append($('<li>').text(msg));
-		});
-	</script>
-
-
+    <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
     <h1><img class="resize_fifty" src="/images/logo.png"></h1>
-  
+
 
  	<ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+    <!-- <form> -->
+      <input id="m" autocomplete="off" /><button id ='send'>Send</button>
+    <!-- </form> -->
 
 
   </body>
+  <script>
+    var socket = io();
+    $('#send').on('click', function(){
+      console.log('hello world');
+      socket.emit('chat message', $('#m').val());
+      $('#m').val('');
+      return false;
+    });
+    socket.on('chat message', function(msg){
+      $('#messages').append($('<li>').text(msg));
+    });
+  </script>
+
+
 </html>
