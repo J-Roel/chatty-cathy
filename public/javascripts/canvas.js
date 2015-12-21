@@ -85,10 +85,6 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
       socket.emit('clearHistory');
    });
 
-
-
-
-
 function buildPalette() {
 
       var colors = [ '#33FFFF','#33FFCC','#33FF99','#33FF66','#33FF33','#33FF00'
@@ -118,8 +114,5 @@ function buildPalette() {
       }
    };//END FUNCTION
    window.addEventListener('mousedown', selectColor);
-
-
-
 
 });
