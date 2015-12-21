@@ -12,8 +12,8 @@ canvasDiv.appendChild(canvas);
 if(typeof G_vmlCanvasManager != 'undefined') {
 	canvas = G_vmlCanvasManager.initElement(canvas);
 }
-   
-   var mouse = { 
+
+   var mouse = {
       click: false,
       move: false,
       pos: {x:0, y:0},
@@ -21,12 +21,12 @@ if(typeof G_vmlCanvasManager != 'undefined') {
    };
 
    var context = canvas.getContext('2d');
-   var width   = window.innerWidth;
-   var height  = window.innerHeight;
+   var width   = document.querySelector('#canvasDiv').scrollWidth;
+   var height  = document.querySelector('#canvasDiv').scrollHeight;
    var socket  = io.connect();
 
-   canvas.width = width;
-   canvas.height = height;
+   canvas.width = width * 2;
+   canvas.height = height * 2;
 
    canvas.onmousedown = function(e){
       mouse.click = true;
@@ -37,9 +37,9 @@ if(typeof G_vmlCanvasManager != 'undefined') {
    };
 
    canvas.onmousemove = function(e) {
-      mouse.pos.x = e.clientX / width;
-      mouse.pos.y = e.clientY / height;
-      
+      mouse.pos.x = e.offsetX / width;
+      mouse.pos.y = e.offsetY / height;
+
       mouse.move = true;
    };
 
