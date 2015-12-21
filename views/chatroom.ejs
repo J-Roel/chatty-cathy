@@ -1,41 +1,59 @@
 <!DOCTYPE html>
 <html>
- <head>
-   <title><%= title %></title>
-   <link rel='stylesheet' href='/stylesheets/canvasStyles.css' />
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/canvasStyles.css' />
+  </head>
 
 
-   <!-- <script src="/socket.io/socket.io.js"></script> -->
+  <body>
 
- </head>
- <body>
-   <h1 class="chatRoomHeader"><%= title %></h1>
+  <header>
+    <div class="wrapper row">
+      <div class="col-md-9">
+          <h1>Chatty Cathy</h1>
+      </div>
+      <div class="col-md-3">
+          <h4>Room#: <%= roomCode %></h4>
+      </div>
+    </div>
+  </header>
 
-   <div id="canvasDiv"></div>
+  <section class="wrapper row">
+      <div class="col-md-9">
+          <!--Canvas Stuff goes here-->
+          <div id="canvasDiv"></div>
+          <div class="row buttons">
+            <button id="clear">Clear</button>
+          </div>
+      </div>
+      <div class="col-md-3">
+ 	      <ul id="messages"></ul>
+          <form action="">
+            <input id="m" autocomplete="off" /><button>Send</button>
+          </form>
+      </div>
+  </section>
 
 
-    <ul id="messages"></ul>
 
-    <form action="">
-     <input id="m" autocomplete="off" /><button>Send</button>
-   </form>
-   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-   <script src="/javascripts/canvas.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/javascripts/canvas.js"></script>
+  </body>
 
+  <script>
+  var socket = io();
+      $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg){
+        $('#messages').append($('<li>').text(msg));
+      });
 
- </body>
-
- <script>
- var socket = io();
-     $('form').submit(function(){
-       socket.emit('chat message', $('#m').val());
-       $('#m').val('');
-       return false;
-     });
-     socket.on('chat message', function(msg){
-       $('#messages').append($('<li>').text(msg));
-     });
-
- </script>
+  </script>
 </html>

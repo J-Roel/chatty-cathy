@@ -5,26 +5,20 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chatz</title>
+  <title>Chatty Cathy</title>
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="stylesheets/homepage.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <link rel="stylesheet" href="stylesheets/style.css">
 </head>
+
 
 <body>
   <div class="container-fluid">
-    <div id="emptyRow1" class="row empty-row">
+    <div class="row empty-row">
     </div>
     <div class="row title">
-      <h1>Welcome to Chatty Cathy</h1>
+      <h1><%= title %></h1>
     </div>
     <div class="row empty-row">
     </div>
@@ -33,21 +27,27 @@
     <div class="row empty-row">
     </div>
     <div class="row">
+
       <div class="col-md-6" id="create-pane">
-        <button type="button" name="Create Chatroom" class="button" id="create-button">Create Chatroom</button>
-        <div class="row">
-          <form class="emailForm" action="/" method="post">
-            <input type="text" name="email" id="emailInput" placeholder=" Email Addresses to Invite Others!"/>
-            <input class="btn btn-default" type="submit" id="createChatSubmit" value="Send">
-          </form>
-        </div>
-      </div>
-      <div class="col-md-6" id="join-pane">
-        <button type="button" name="Join Chatroom" class="button" id="join-button">Join Chatroom</button>
+        <form action="/create" method="get">
+          <input type="button" class="button" id="create-button" value="Create Chatroom"></input>
           <div class="row">
-          <input type="text" name="name" id="keyCodeInput" placeholder=" Type key code to join chatroom"/><input class="btn btn-default" type="submit" id="joinChatSubmit" value="Submit">
+            <input type="hidden" id="hRoomCode" name="roomCode" value="">
+            <input type="text" name="email" id="emailInput" placeholder=" Input Email Addresses to Invite Others!"/>
+
+            <input class="btn btn-default" type="submit" id="createChatSubmit" value="Send">
           </div>
+        </form>
       </div>
+
+      <div class="col-md-6" id="join-pane">
+        <form action="/join" method="get">
+          <input type="button" name="Join Chatroom" class="button" id="join-button" value="Join Chatroom"></input>
+            <div class="row">
+            <input type="text" name="name" id="keyCodeInput" placeholder=" Type in your key code to join chatroom"/><input class="btn btn-default" type="submit" id="joinChatSubmit" value="Submit">
+            </div>
+        </div>
+        </form>
     </div>
 
 
@@ -57,7 +57,6 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="javascripts/homepage.js"></script>
-  <!-- <script src="routes/index.js"></script> -->
 </body>
 
 </html>
