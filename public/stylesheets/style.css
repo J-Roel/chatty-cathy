@@ -1,47 +1,99 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("https://images.unsplash.com/photo-1418225162054-0f773a996f9e?crop=entropy&fit=crop&fm=jpg&h=800&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1225");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
-a {
-  color: #00B7FF;
-}
-.resize_fifty{
-	width:15%;
-	height:15%;
+.title {
+  text-align: center;
+  color: white;
+  font-weight: bold;
 }
 
-/* FROM SOCKET.IO CHAT TUTORIAL */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font: 13px Helvetica, Arial; }
-form { 
-	background: #000; 
-	padding: 3px; 
-	//position: fixed; 
-	bottom: 0; 
-	width: 400px; 
+.empty-row {
+  padding: 2em;
 }
-form input { 
-	border: 0; 
-	padding: 10px; 
-	width: 90%; 
-	margin-right: .5%; 
+
+#emptyRow1 {
+  padding: 1em;
 }
-form button { 
-	width: 9%; 
-	background: rgb(130, 224, 255); 
-	border: none; 
-	padding: 10px; }
-#messages { 
-	list-style-type: none; 
-	margin: 0; 
-	padding: 0; 
-	height: 400px;
+
+h1 {
+  font-family: "Gill Sans";
+  font-size: 5em;
+}
+
+.button {
+  height: 12vh;
+  width: 35vw;
+  font-size: 2em;
+  font-family: "Gill Sans";
+  text-align: center;
+  border-radius: 2rem;
+  background: rgba(50, 50, 50, 0.8);
+  color: #D0D0D0;
+}
+
+#create-pane {
+  text-align: center;
+}
+
+#join-pane {
+  text-align: center;
+}
+
+.keyField {
+  height: 12vh;
+  width: 35vw;
+  font-size: 2em;
+  font-family: "Gill Sans";
+  text-align: center;
+  border-radius: 2rem;
+  background: rgba(40, 40, 40, 0.8);
+  color: #D0D0D0;
 
 }
-#messages li { 
-	padding: 5px 10px; 
+
+#emailInput {
+  margin-top: 1em;
+  height: 7vh;
+  width: 20vw;
+  background: rgba(40, 40, 40, 0.8);
+  color: #66CD00;
+  font-family: "Gill Sans";
+  font-size: 1.2em;
+  display: none;
 }
-#messages li:nth-child(odd) { 
-	background: #eee; 
+
+#keyCodeInput {
+  margin-top: 1em;
+  height: 7vh;
+  width: 20vw;
+  background: rgba(40, 40, 40, 0.8);
+  color: #66CD00;
+  font-family: "Gill Sans";
+  font-size: 1.2em;
+  display: none;
+}
+
+#joinChatSubmit {
+  border: .2rem outset #66CD00;
+  margin-left: 2em;
+  width: 5vw;
+  height: 7vh;
+  background: rgba(40, 40, 40, 0.8);
+  color: #66CD00;
+  font-family: "Gill Sans";
+  display: none;
+}
+
+#createChatSubmit {
+  border: .2rem outset #66CD00;
+  margin-left: 2em;
+  width: 5vw;
+  height: 7vh;
+  background: rgba(40, 40, 40, 0.8);
+  color: #66CD00;
+  font-family: "Gill Sans";
+  display: none;
 }
