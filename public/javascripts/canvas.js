@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+var $clear = $('#clear');
 
 canvasWidth = '0';
 canvasHeight = '0';
@@ -61,9 +62,11 @@ if(typeof G_vmlCanvasManager != 'undefined') {
       setTimeout(mainLoop, 25);
    }
    mainLoop();
-});
 
 
-$( "#clear" ).click(function() {
-  line_history = [];
+	 $( "#clear" ).click(function() {
+	   line_history = [];
+	 	 context.clearRect(0, 0, canvas.width, canvas.height);
+	 });
+
 });
