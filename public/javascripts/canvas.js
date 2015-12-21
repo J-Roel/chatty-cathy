@@ -78,14 +78,14 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
 
 function buildPalette() {
 
-      var colors = [ '#33FFFF','#33FFCC','#33FF99','#33FF66','#33FF33','#33FF00'
-         ,'#33CCFF','#33CCCC','#33CC99','#33CC66','#33CC33','#33CC00'
-         ,'#3399FF','#3399CC','#339999','#339966','#339933','#339900'
-         ,'#3366FF','#3366CC','#336699','#336666','#336633','#336600'
-         ,'#3333FF','#3333CC','#333399','#333366','#333333','#333300'
-         ,'#3300FF','#3300CC','#330099','#330066','#330033','#330000'
-         ,'#00FFFF','#00FFCC','#00FF99','#00FF66','#00FF33','#000000'
-         ,'#ffffff','#CCCCCC','#DDDDDD'];
+      var colors = ['#660000','#bb0000','#ff0000'
+         ,'#006600','#00bb00','#00ff00','#000066','#0000bb','#0000ff'
+         ,'#660066','#bb00bb','#ff00ff','#666600','#bbbb00','#ffff00'
+         ,'#006666','#00bbbb','#00ffff','#ff0066'
+         ,'#ff00bb','#ff6600','#ffbb00','#66ff00','#bbff00','#0066ff'
+				 ,'#00bbff','#6600ff','#bb00ff','#543210','#765432','#ba9876'
+				 ,'#fedcba','#000000','#212121','#656565','#989898','#bababa'
+				 ,'#dcdcdc','#ffffff'];
 
       for (var i = 0; i < colors.length; i++) { //loop through our color palette array
          var aColor = document.createElement('div'); //create a new element for our color
