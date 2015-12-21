@@ -1,15 +1,5 @@
 var express = require('express');
 var router = express.Router();
-// var keyCode = require('../javascripts/homepage.js');
-
-// console.log(keyCode.key());
-
-
-
-// var sendgrid = require("sendgrid")(api_user, api_key);
-
-
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

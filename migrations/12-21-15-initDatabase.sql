@@ -1,10 +1,10 @@
-CREATE DATABASE chattyCathy;
+CREATE DATABASE chattycathy;
 
-\c chattyCathy;
+\c chattycathy;
 
-CREATE TABLE chatRooms (
+CREATE TABLE chatrooms (
   id SERIAL PRIMARY KEY,
-  key_code varchar(40),
+  key_code VARCHAR(8)
 );
 
 -- CREATE TABLE chat_history (
