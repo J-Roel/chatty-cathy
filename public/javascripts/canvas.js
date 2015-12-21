@@ -53,7 +53,7 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
       var line = data.line;
       context.beginPath();
       context.lineWidth = 4;
-      context.strokeStyle = clientColor;
+      context.strokeStyle = line[2];
       context.moveTo(line[0].x * width, line[0].y * height);
       context.lineTo(line[1].x * width, line[1].y * height);
       context.stroke();
@@ -61,7 +61,7 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
 
    function mainLoop() {
       if (mouse.click && mouse.move && mouse.pos_prev) {
-         socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev ] });
+         socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev, clientColor] });
          mouse.move = false;
       }
       mouse.pos_prev = {x: mouse.pos.x, y: mouse.pos.y};
@@ -69,20 +69,13 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
    }
    mainLoop();
 
-
-
-
    socket.on('clearHistory', function (data){
-      console.log('clear');
       context.clearRect(0,0, canvas.width, canvas.height);
    });
-            
       
    $('#clear').click(function(){  
       socket.emit('clearHistory');
    });
-
-
 
 
 
