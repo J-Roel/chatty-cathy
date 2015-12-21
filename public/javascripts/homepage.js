@@ -1,6 +1,7 @@
 
 var disableButton = function(){
   $('.button').disabled=true;
+};
 
   $('#create-button').on('click', function() {
     var keyCode = eightDig();
@@ -13,7 +14,6 @@ var disableButton = function(){
     $('#create-button').css({'color':'#66CD00'});
     //$('#create-button').replaceWith("<p class='keyField'>" + keyCode + "</p>")
   });
-};
 
 
 
@@ -43,8 +43,4 @@ var eightDig = function() {
 var random = function(x) {
   var item = x[Math.floor(Math.random() * x.length)];
   return item;
-};
-
-exports.key = function(){
-  return keyCode;
 };
