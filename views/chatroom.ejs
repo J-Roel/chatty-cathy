@@ -28,6 +28,7 @@
           <div class="row buttons">
             <button id="clear">Clear</button>
           </div>
+          <div id="palette"></div>
       </div>
       <div class="col-md-3">
  	      <ul id="messages"></ul>
@@ -54,6 +55,9 @@
       socket.on('chat message', function(msg){
         $('#messages').append($('<li>').text(msg));
       });
+      // socket.on('clearHistory', function(){
+        
+      // });
 
   </script>
 </html>
