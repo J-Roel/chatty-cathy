@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-// var knex = require('knex')({});
-// var pg = require('knex')({client: 'pg'});
-
 var knex = require('knex')({
 	
 	client: 'pg',
@@ -41,7 +38,8 @@ router.post('/', function(req, res, next) {
 			for(var key in data[i]){//goes through object
 				if( roomCode !== data[i][key] )
 				{
-					doMakeRoom = true;				
+					doMakeRoom = true;
+					console.log("Making a new room");	
 				} else {
 					doMakeRoom = false;
 					console.log("Found a room with the same number.");
@@ -56,8 +54,10 @@ router.post('/', function(req, res, next) {
 			//We have a valid room so add to database
 			// knex('table').insert({a: 'b'}).returning('*').toString();
 			// "insert into "table" ("a") values ('b')"
-
-			knex('chatrooms').insert({key_code: roomCode});
+			console.log('inserting into chatrooms');
+			knex('chatrooms').insert({
+				key_code: roomCode
+			}).returning(key);
 
 			//parse and send emails if we have a valid room
 
@@ -97,7 +97,6 @@ function sendMail(emails){
 var eightDig = function() {
   var code = [];
   var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
   for (var i = 0; i < array.length - 2; i++) {
     code.push(random(array));
 

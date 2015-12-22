@@ -106,7 +106,7 @@ io.on('connection', function(socket){
       var clientInfo = new Object();
       clientInfo.cliendId = socket.id;
       clients.push(clientInfo);
-
+      
       console.log(clientInfo);
   });
 
