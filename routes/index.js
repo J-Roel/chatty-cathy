@@ -64,7 +64,7 @@ router.post('/', function(req, res, next) {
 		{
       sendgrid.send({
         to: email,
-        from: 'zbuchenau@gmail.com',
+        from: 'noreply@tightbutthole.com',
         subject: 'Key Code For Chatty Cathy Chatroom!',
         text: 'your key code for your chatroom is ' + roomCode
       }, function(err, json){
