@@ -99,14 +99,14 @@ var chat_history = [];
 var clients = [];
 
 io.on('connection', function(socket){
-  
-    
+
+
   socket.on('storeClientInfo', function(data){
     console.log('user is connected');
       var clientInfo = new Object();
       clientInfo.cliendId = socket.id;
       clients.push(clientInfo);
-      
+
       console.log(clientInfo);
   });
 
@@ -129,7 +129,7 @@ io.on('connection', function(socket){
   socket.on('draw_line', function (data) {
       line_history.push(data.line);
       io.emit('draw_line', { line: data.line });
-      console.log('Line History: ', line_history);
+      // console.log('Line History: ', line_history);
   });
   
   socket.on('clearHistory', function(){
