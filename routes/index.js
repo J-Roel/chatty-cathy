@@ -10,7 +10,7 @@ var knex = require('knex')({
 	connection: {
 		host: '127.0.0.1',
 		port: 5432,
-		user: 'jroel',
+		user: process.env.DB_USER,
 		password: '',
 		database: 'chattycathy'
 	}
