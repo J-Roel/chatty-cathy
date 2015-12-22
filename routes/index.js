@@ -26,8 +26,9 @@ router.get('/chatroom', function(req, res, next){
 	res.render('chatroom', { title: 'Welcome to Chatty Cathy' });
 });
 
+
+
 router.post('/', function(req, res, next) {
-	console.log(req.body);
 
 	//get key code passed from index
 	var roomCode = req.body.roomCode;
@@ -50,8 +51,6 @@ router.post('/', function(req, res, next) {
 			}
 		}
 		
-		
-
 
 
 		if(doMakeRoom)
@@ -62,8 +61,7 @@ router.post('/', function(req, res, next) {
 			res.render('chatroom', {
 				title: 'Chatty Cathy',
 				roomCode: roomCode,
-				rooms: data,
-				users: userArray
+				rooms: data
 			});
 		} else {
 			res.render('index', {
@@ -74,11 +72,7 @@ router.post('/', function(req, res, next) {
 			})
 
 		}
-
-
-
-		
-	});
+	});//END router.post('/')
 
 });
 
