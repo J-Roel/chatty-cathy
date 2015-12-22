@@ -1,4 +1,7 @@
 var express = require('express');
+var sendgrid = require('sendgrid')(process.env.SENDGRID_KEY);
+var router = express.Router();
+
 var knex = require('knex')({
   client: 'pg',
   connection: {
@@ -8,8 +11,9 @@ var knex = require('knex')({
     database: 'chattycathy' //yourdatabase name
   }
 });
+//**************************************************************************************
 
-var router = express.Router();
+
 
 //Define a function to get our table
 var chatRoom = function() {
@@ -21,23 +25,30 @@ router.get('/', function(req, res, next) {
   res.render('index', {
     title: 'Welcome to Chatty Cathy'
   });
-  console.log(query);
+  console.log('query');
+
 });
 
-router.get('/chatroom', function(req, res, next) {
-  res.render('chatroom', {
-    title: 'Welcome to Chatty Cathy'
-  });
-});
 
 router.post('/', function(req, res, next) {
   console.log(req.body);
   var roomCode = req.body.roomCode;
-  console.log('hi');
+  var email = req.body.email;
+  console.log(email);
 
+  sendgrid.send({
+    to: email,
+    from: 'zbuchenau@gmail.com',
+    subject: 'Key Code For Chatty Cathy Chatroom!',
+    text: 'your key code for your chatroom is ' + roomCode
+  }, function(err, json){
+    if (err){
+      console.log(err);
+    }console.log(json);
+  });
 
   console.log('hello');
-  
+
   chatRoom().insert({
     key_code: roomCode
   }).then(function(key) {
@@ -57,15 +68,9 @@ router.post('/', function(req, res, next) {
 
 });
 
-function sendMail(emails) {
-  //Mail them
-  var email = new sendgrid.Email();
-  email.addTo("test@sendgrid.com");
-  email.setFrom("jeremyroelfs@icloud.com");
-  email.setSubject("Sending with SendGrid is Fun");
-  email.setHtml("and easy to do anywhere, even with Node.js");
-
-  sendgrid.send(email);
-}
+// var sendEmail = sendgrid.send(process.env.PAYLOAD, function(err, json) {
+//   if (err) { console.error(err); }
+//   console.log('hello');
+// });
 
 module.exports = router;

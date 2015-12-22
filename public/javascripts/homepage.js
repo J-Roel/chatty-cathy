@@ -1,21 +1,24 @@
-var disableButton = function(){
-  $('.button').disabled=true;
+var disableButton = function() {
+  $('.button').disabled = true;
 };
 
-  $('#create-button').on('click', function() {
-    var keyCode = eightDig();
-    console.log(keyCode);
-    $('#create-button').val(keyCode);
-    $('#hRoomCode').val(keyCode);
-    $(this).prop('disabled', true);
-    $('#emailInput').slideDown('fast');
-    $('#createChatSubmit').slideDown('fast');
-    $('#create-button').css({'color':'#66CD00'});
-
-    $('#createChatSubmit').on('click', function(){
-      console.log(keyCode);
-    });
+$('#create-button').on('click', function() {
+  var keyCode = eightDig();
+  console.log(keyCode);
+  $('#create-button').val(keyCode);
+  $('#hRoomCode').val(keyCode);
+  $(this).prop('disabled', true);
+  $('#emailInput').slideDown('fast');
+  $('#createChatSubmit').slideDown('fast');
+  $('#create-button').css({
+    'color': '#66CD00'
   });
+
+  $('#createChatSubmit').on('click', function() {
+    console.log(keyCode);
+    
+  });
+});
 
 
 $('#join-button').on('click', function() {

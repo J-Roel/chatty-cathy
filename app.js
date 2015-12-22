@@ -1,4 +1,3 @@
-require('dotenv').load();
 var express = require('express');
 
 var path = require('path');
@@ -7,6 +6,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
+var env = require('dotenv').load();
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,8 +32,8 @@ app.use(cookieSession({
     process.env.SESSION_KEY2,
     process.env.SESSION_KEY3
   ]
+}));console.log(process.env.SESSION_KEY3);
 
-}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
