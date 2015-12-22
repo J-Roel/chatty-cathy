@@ -38,14 +38,13 @@
             <input class="btn btn-default" type="submit" id="createChatSubmit" value="Send">
           </div>
         </form>
-        <p><%=  %></p>
       </div>
 
       <div class="col-md-6" id="join-pane">
-        <form action="/join" method="get">
+        <form action="/join" method="post">
           <input type="button" name="Join Chatroom" class="button" id="join-button" value="Join Chatroom"></input>
             <div class="row">
-            <input type="text" name="name" id="keyCodeInput" placeholder=" Type in your key code to join chatroom"/><input class="btn btn-default" type="submit" id="joinChatSubmit" value="Submit">
+            <input type="text" name="keyCodeInput" id="keyCodeInput" placeholder=" Type in your key code to join chatroom"/><input class="btn btn-default" type="submit" id="joinChatSubmit" value="Submit">
             </div>
         </div>
         </form>

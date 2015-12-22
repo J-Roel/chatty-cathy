@@ -15,7 +15,7 @@ var knex = require('knex')({
 		database: 'chattycathy'
 	}
 });
-//**************************************************************************************
+
 
 //Define a function to get our table
 var chatRoom = function() {
@@ -38,7 +38,8 @@ router.post('/', function(req, res, next) {
 
 
 	var doMakeRoom = false;
-	//Get database info
+	//Get database info\q
+
 	chatRoom().select('key_code')
 	.then(function(data){
 		console.log(data);
@@ -59,16 +60,32 @@ router.post('/', function(req, res, next) {
 
 		if(doMakeRoom)
 		{
-      sendgrid.send({
-        to: email,
-        from: 'zbuchenau@gmail.com',
-        subject: 'Key Code For Chatty Cathy Chatroom!',
-        text: 'your key code for your chatroom is ' + roomCode
-      }, function(err, json){
-        if (err){
-          console.log(err);
-        }console.log(json);
-      });
+
+			if(email != "")
+		    {
+		      sendgrid.send({
+		        to: email,
+		        from: 'zbuchenau@gmail.com',
+		        subject: 'Key Code For Chatty Cathy Chatroom!',
+		        text: 'your key code for your chatroom is ' + roomCode
+		      }, function(err, json){
+		        if (err){
+		          console.log(err);
+		        }console.log(json);
+		      });
+
+		      sendgrid.send({
+		        to: email,
+		        from: 'noreply@tightbutthole.com',
+		        subject: 'Key Code For Chatty Cathy Chatroom!',
+		        text: 'your key code for your chatroom is ' + roomCode
+		      }, function(err, json){
+		        if (err){
+		          console.log(err);
+		        }console.log(json);
+		      });
+			}
+
 			//We have a valid room so add to database
 			// knex('table').insert({a: 'b'}).returning('*').toString();
 			// "insert into "table" ("a") values ('b')"
@@ -76,30 +93,70 @@ router.post('/', function(req, res, next) {
 			chatRoom().insert({
 				key_code: roomCode
 			}).then(function(key){
-
-      });
+				//Do nothing
+      		});
 
 			//parse and send emails if we have a valid room
 
 			//SETUP OUR ROOM
 			res.render('chatroom', {
 				title: 'Chatty Cathy',
+				roomCode: roomCode
+			});
+		} else {
+			res.render('index', {
+				title: 'Chatty Cathy'
+			});
+
+		}//END IF
+	});//END POSTGRES
+
+});//END router.post('/')
+
+
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX - JR
+router.post('/join', function(req, res, next) {
+	console.log('Joining room', req.body.keyCodeInput);
+	var roomCode = req.body.keyCodeInput;
+
+  	var gotoRoom = false; //Use to make sure we have a room
+
+  	//POSTGRESQL COMPARE WITH KEY_CODE
+  	chatRoom().select('key_code')
+	.then(function(data){
+		for(var i = 0; i < data.length; i++){//goes through array
+			for(var key in data[i]){//goes through object
+				if( roomCode === data[i][key] )//if the same as roomCode
+				{
+					gotoRoom = true;//set goto room to true
+					console.log("Adding you to a room.", gotoRoom, roomCode);
+				} else {
+					console.log('No room of that number found.');
+				}
+			}
+		}
+
+
+		if(gotoRoom)
+		{
+			console.log('Goto chatroom', roomCode);
+			res.render('chatroom', {
 				roomCode: roomCode,
-				rooms: data
+				title: 'Chatty Cathy'
 			});
 		} else {
 			res.render('index', {
 				title: 'Chatty Cathy',
-				codeErr: 'Room is not available. Redirecting to another room.',
-				roomCode: roomCode,
-				rooms: data
+				msg: 'No Room of That Number Found.'
 			});
-
 		}
-	});//END router.post('/')
 
-});
+	});//END POSTGRES
 
+
+});//END router.post('/join')
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx - END
 
 function sendMail(emails){
 		//Mail them
