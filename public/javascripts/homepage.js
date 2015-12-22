@@ -1,21 +1,21 @@
-
 var disableButton = function(){
   $('.button').disabled=true;
-}
-
+};
 
   $('#create-button').on('click', function() {
     var keyCode = eightDig();
     console.log(keyCode);
-      $('#create-button').val(keyCode);
-      $('#hRoomCode').val(keyCode);
-      $(this).prop('disabled', true);
-      $('#emailInput').slideDown('fast');
-      $('#createChatSubmit').slideDown('fast');
+    $('#create-button').val(keyCode);
+    $('#hRoomCode').val(keyCode);
+    $(this).prop('disabled', true);
+    $('#emailInput').slideDown('fast');
+    $('#createChatSubmit').slideDown('fast');
     $('#create-button').css({'color':'#66CD00'});
-    //$('#create-button').replaceWith("<p class='keyField'>" + keyCode + "</p>")
+
+    $('#createChatSubmit').on('click', function(){
+      console.log(keyCode);
+    });
   });
-  
 
 
 $('#join-button').on('click', function() {
@@ -36,12 +36,12 @@ var eightDig = function() {
 
   var keyCode = code.toString();
   keyCode = keyCode.replace(/,/g, '');
+
   return keyCode;
 
-}
-
+};
 
 var random = function(x) {
   var item = x[Math.floor(Math.random() * x.length)];
   return item;
-}
+};
