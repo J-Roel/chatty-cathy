@@ -76,6 +76,10 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
       socket.emit('clearHistory');
    });
 
+   socket.on('connect', function(data){
+      socket.emit('storeClientInfo');
+   });
+
 function buildPalette() {
 
       var colors = ['#660000','#bb0000','#ff0000'
