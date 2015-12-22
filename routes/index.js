@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
 				if( roomCode !== data[i][key] )
 				{
 					doMakeRoom = true;
-					console.log("Making a new room");	
+					console.log("Making a new room");
 				} else {
 					doMakeRoom = false;
 					console.log("Found a room with the same number.");
