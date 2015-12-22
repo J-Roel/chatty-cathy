@@ -61,6 +61,7 @@ router.post('/', function(req, res, next) {
 
 		if(doMakeRoom)
 		{
+
 			if(email != "")
 		    {
 		      sendgrid.send({
@@ -73,8 +74,18 @@ router.post('/', function(req, res, next) {
 		          console.log(err);
 		        }console.log(json);
 		      });
+
+		      sendgrid.send({
+		        to: email,
+		        from: 'noreply@tightbutthole.com',
+		        subject: 'Key Code For Chatty Cathy Chatroom!',
+		        text: 'your key code for your chatroom is ' + roomCode
+		      }, function(err, json){
+		        if (err){
+		          console.log(err);
+		        }console.log(json);
+		      });
 			}
-			
 
 			//We have a valid room so add to database
 			// knex('table').insert({a: 'b'}).returning('*').toString();
