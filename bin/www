@@ -99,13 +99,15 @@ var chat_history = [];
 var clients = [];
 
 io.on('connection', function(socket){
-  console.log('user is connected');
+  
     
   socket.on('storeClientInfo', function(data){
+    console.log('user is connected');
       var clientInfo = new Object();
       clientInfo.cliendId = socket.id;
       clients.push(clientInfo);
 
+      console.log(clientInfo);
   });
 
 
@@ -136,9 +138,9 @@ io.on('connection', function(socket){
       line_history = [];
   });
 
-  socket.on('disconnect', function(){
+  socket.on('disconnect', function(data){
       console.log('--User is disconnected');
-      for( var i=0; len=clients.length; ++i)
+      for( var i=0, len=clients.length;i<len; ++i)
       {
         var c = clients[i];
 

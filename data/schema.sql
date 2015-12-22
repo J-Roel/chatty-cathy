@@ -1,2 +1,0 @@
-DROP TABLE IF EXISTS chatrooms;
-CREATE TABLE chatrooms ( id SERIAL PRIMARY KEY, key_code VARCHAR(8) );

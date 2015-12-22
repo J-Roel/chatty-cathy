@@ -77,7 +77,7 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
    });
 
    socket.on('connect', function(data){
-      socket.emit('storeClientInfo', {} );
+      socket.emit('storeClientInfo');
    });
 
 function buildPalette() {

@@ -1,5 +1,4 @@
 var express = require('express');
-<<<<<<< HEAD
 var router = express.Router();
 
 // var knex = require('knex')({});
@@ -16,65 +15,19 @@ var knex = require('knex')({
 		database: 'chattycathy'
 	}
 });
-=======
-var knex = require('knex')({
-  client: 'pg',
-  connection: {
-    host: '127.0.0.1', //localhost server
-    port: 5432, //default pg server port
-    user: 'zachbuchenau', //your username
-    database: 'chattycathy' //yourdatabase name
-  }
-});
 
-var router = express.Router();
->>>>>>> 579b972b8b3ae8bcfd8a27a74cb8fb55a9b110ee
-
-//Define a function to get our table
-var chatRoom = function() {
-  return knex('chatrooms');
-};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {
-    title: 'Welcome to Chatty Cathy'
-  });
-  console.log(query);
+  res.render('index', { title: 'Welcome to Chatty Cathy' });
 });
 
-router.get('/chatroom', function(req, res, next) {
-  res.render('chatroom', {
-    title: 'Welcome to Chatty Cathy'
-  });
+router.get('/chatroom', function(req, res, next){
+	res.render('chatroom', { title: 'Welcome to Chatty Cathy' });
 });
 
-<<<<<<< HEAD
-=======
-router.post('/', function(req, res, next) {
-  console.log(req.body);
-  var roomCode = req.body.roomCode;
-  console.log('hi');
 
 
-  console.log('hello');
-  
-  chatRoom().insert({
-    key_code: roomCode
-  }).then(function(key) {
->>>>>>> 579b972b8b3ae8bcfd8a27a74cb8fb55a9b110ee
-
-    //Return our values and update elements
-    res.render('chatroom', {
-      title: 'Chatty Cathy',
-      roomCode: roomCode
-    }); //this is the callback function that gets called when we successfully insert a monkey
-    console.log('success');
-  }).catch(function(err) { //this is the callback function that gets called when we fail
-    console.log(err.toString());
-  });
-
-<<<<<<< HEAD
 router.post('/', function(req, res, next) {
 
 	//get key code passed from index
@@ -97,11 +50,15 @@ router.post('/', function(req, res, next) {
 				}
 			}
 		}
-		
-
 
 		if(doMakeRoom)
 		{
+			//We have a valid room so add to database
+			// knex('table').insert({a: 'b'}).returning('*').toString();
+			// "insert into "table" ("a") values ('b')"
+
+			knex('chatrooms').insert({key_code: roomCode});
+
 			//parse and send emails if we have a valid room
 
 			//SETUP OUR ROOM
@@ -122,14 +79,20 @@ router.post('/', function(req, res, next) {
 	});//END router.post('/')
 
 });
-=======
->>>>>>> 579b972b8b3ae8bcfd8a27a74cb8fb55a9b110ee
 
 
+function sendMail(emails){
+		//Mail them
+		var email = new sendgrid.Email();
+		email.addTo("test@sendgrid.com");
+		email.setFrom("jeremyroelfs@icloud.com");
+		email.setSubject("Sending with SendGrid is Fun");
+		email.setHtml("and easy to do anywhere, even with Node.js");
+ 
+		sendgrid.send(email);
+};
 
-});
 
-<<<<<<< HEAD
 //KEYCODE
 var eightDig = function() {
   var code = [];
@@ -150,17 +113,6 @@ var random = function(x) {
   var item = x[Math.floor(Math.random() * x.length)];
   return item;
 }
-=======
-function sendMail(emails) {
-  //Mail them
-  var email = new sendgrid.Email();
-  email.addTo("test@sendgrid.com");
-  email.setFrom("jeremyroelfs@icloud.com");
-  email.setSubject("Sending with SendGrid is Fun");
-  email.setHtml("and easy to do anywhere, even with Node.js");
->>>>>>> 579b972b8b3ae8bcfd8a27a74cb8fb55a9b110ee
 
-  sendgrid.send(email);
-}
 
 module.exports = router;
