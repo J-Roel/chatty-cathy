@@ -105,7 +105,7 @@ router.post('/', function(req, res, next) {
 			});
 		} else {
 			res.render('index', {
-				title: 'Chatty Cathy'
+				title: 'Chatroom not found...'
 			});
 
 		}//END IF
