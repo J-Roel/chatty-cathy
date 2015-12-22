@@ -98,7 +98,7 @@ var line_history = [];
 var chat_history = [];
 
 io.on('connection', function(socket){
-
+  console.log('user is connected');
   // for(var i n chat_history) {
   //   socket.emit('msg', { msg });
   // }
@@ -116,8 +116,14 @@ io.on('connection', function(socket){
   socket.on('draw_line', function (data) {
       line_history.push(data.line);
       io.emit('draw_line', { line: data.line });
+      console.log('Line History: ', line_history);
   });
-
+  
+  socket.on('clearHistory', function(){
+      console.log('called clearHistory');
+      io.emit('clearHistory', {});
+      line_history = [];
+  });
 
   socket.on('disconnect', function(){
       console.log('--User is disconnected');
