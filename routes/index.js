@@ -36,7 +36,7 @@ router.post('/', function(req, res, next) {
 		console.log(data);
 		for(var i = 0; i < data.length; i++){//goes through array
 			for(var key in data[i]){//goes through object
-				if( roomCode !== data[i][key] )
+				if( roomCode !== data[i][key] )//if not the same roomCode
 				{
 					doMakeRoom = true;
 					console.log("Making a new room");
@@ -101,12 +101,11 @@ var eightDig = function() {
     code.push(random(array));
 
   }
-
   var keyCode = code.toString();
   keyCode = keyCode.replace(/,/g, '');
   return keyCode;
-
 }
+
 
 var random = function(x) {
   var item = x[Math.floor(Math.random() * x.length)];
