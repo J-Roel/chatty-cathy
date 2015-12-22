@@ -77,8 +77,8 @@ router.post('/', function(req, res, next) {
 		      sendgrid.send({
 		        to: email,
 		        from: 'noreply@tightbutthole.com',
-		        subject: 'Key Code For Chatty Cathy Chatroom!',
-		        text: 'your key code for your chatroom is ' + roomCode
+		        subject: 'You Have Been Requested For Collaboration in a Chatty Cathy Chatroom...',
+		        text: 'Visit zachwhiteboard.herokuapp.com, click "Join Chatroom" and enter the following key code to join the chatroom: ' + roomCode 
 		      }, function(err, json){
 		        if (err){
 		          console.log(err);
