@@ -147,7 +147,7 @@ router.post('/join', function(req, res, next) {
 			});
 		} else {
 			res.render('index', {
-				title: 'Invalid Chatroom number...',
+				title: 'Invalid Chatroom number...YOU SUCK!!',
 				msg: 'No Room of That Number Found.'
 			});
 		}
