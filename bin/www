@@ -96,9 +96,20 @@ function onListening() {
 //Setup socket.io
 var line_history = [];
 var chat_history = [];
+var clients = [];
 
 io.on('connection', function(socket){
   console.log('user is connected');
+    
+  socket.on('storeClientInfo', function(data){
+      var clientInfo = new Object();
+      clientInfo.cliendId = socket.id;
+      clients.push(clientInfo);
+
+  });
+
+
+
   // for(var i n chat_history) {
   //   socket.emit('msg', { msg });
   // }
@@ -127,7 +138,15 @@ io.on('connection', function(socket){
 
   socket.on('disconnect', function(){
       console.log('--User is disconnected');
+      for( var i=0; len=clients.length; ++i)
+      {
+        var c = clients[i];
 
+        if(c.clientId == socket.id){
+          clients.splice(i, 1);
+          break;
+        }
+      }
   });
 
 

@@ -40,25 +40,38 @@ router.post('/', function(req, res, next) {
 			for(var key in data[i]){//goes through object
 				if( roomCode !== data[i][key] )
 				{
-					doMakeRoom = true; 					
+					doMakeRoom = true;				
 				} else {
 					doMakeRoom = false;
-					console.log("Found a room with the same number");
+					console.log("Found a room with the same number.");
+					//Generate a new number
+					roomCode = eightDig();
 				}
-
 			}
 		}
 		
+		
+
+
+
 		if(doMakeRoom)
 		{
+			//parse and send emails if we have a valid room
 
 			//SETUP OUR ROOM
 			res.render('chatroom', {
 				title: 'Chatty Cathy',
 				roomCode: roomCode,
-				rooms: data 
+				rooms: data,
+				users: userArray
 			});
 		} else {
+			res.render('index', {
+				title: 'Chatty Cathy',
+				codeErr: 'Room is not available. Redirecting to another room.',
+				roomCode: roomCode,
+				rooms: data
+			})
 
 		}
 
@@ -82,6 +95,26 @@ function sendMail(emails){
 };
 
 
+//KEYCODE
+var eightDig = function() {
+  var code = [];
+  var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  for (var i = 0; i < array.length - 2; i++) {
+    code.push(random(array));
+
+  }
+
+  var keyCode = code.toString();
+  keyCode = keyCode.replace(/,/g, '');
+  return keyCode;
+
+}
+
+var random = function(x) {
+  var item = x[Math.floor(Math.random() * x.length)];
+  return item;
+}
 
 
 module.exports = router;
