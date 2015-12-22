@@ -17,9 +17,6 @@ var knex = require('knex')({
 });
 //**************************************************************************************
 
-
-
-
 //Define a function to get our table
 var chatRoom = function() {
   return knex('chatrooms');
@@ -120,7 +117,7 @@ function sendMail(emails){
 var eightDig = function() {
   var code = [];
   var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  for (var i = 0; i < array.length - 2; i++) {
+  for (var i = 0; i < 8; i++) {
     code.push(random(array));
 
   }
