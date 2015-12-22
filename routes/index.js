@@ -105,7 +105,7 @@ router.post('/', function(req, res, next) {
 			});
 		} else {
 			res.render('index', {
-				title: 'Chatroom not found...'
+				title: 'Chatty Cathy'
 			});
 
 		}//END IF
@@ -147,7 +147,7 @@ router.post('/join', function(req, res, next) {
 			});
 		} else {
 			res.render('index', {
-				title: 'Chatty Cathy',
+				title: 'Invalid Chatroom number...',
 				msg: 'No Room of That Number Found.'
 			});
 		}
