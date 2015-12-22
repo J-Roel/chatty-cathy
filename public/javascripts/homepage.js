@@ -1,4 +1,3 @@
-
 var disableButton = function(){
   $('.button').disabled=true;
 };
@@ -6,15 +5,17 @@ var disableButton = function(){
   $('#create-button').on('click', function() {
     var keyCode = eightDig();
     console.log(keyCode);
-      $('#create-button').val(keyCode);
-      $('#hRoomCode').val(keyCode);
-      $(this).prop('disabled', true);
-      $('#emailInput').slideDown('fast');
-      $('#createChatSubmit').slideDown('fast');
+    $('#create-button').val(keyCode);
+    $('#hRoomCode').val(keyCode);
+    $(this).prop('disabled', true);
+    $('#emailInput').slideDown('fast');
+    $('#createChatSubmit').slideDown('fast');
     $('#create-button').css({'color':'#66CD00'});
-    //$('#create-button').replaceWith("<p class='keyField'>" + keyCode + "</p>")
-  });
 
+    $('#createChatSubmit').on('click', function(){
+      console.log(keyCode);
+    });
+  });
 
 
 $('#join-button').on('click', function() {
