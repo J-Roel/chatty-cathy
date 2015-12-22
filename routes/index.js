@@ -63,16 +63,16 @@ router.post('/', function(req, res, next) {
 
 			if(email != "")
 		    {
-		      sendgrid.send({
-		        to: email,
-		        from: 'zbuchenau@gmail.com',
-		        subject: 'Key Code For Chatty Cathy Chatroom!',
-		        text: 'your key code for your chatroom is ' + roomCode
-		      }, function(err, json){
-		        if (err){
-		          console.log(err);
-		        }console.log(json);
-		      });
+		      // sendgrid.send({
+		      //   to: email,
+		      //   from: '',
+		      //   subject: 'Key Code For Chatty Cathy Chatroom!',
+		      //   text: 'your key code for your chatroom is ' + roomCode
+		      // }, function(err, json){
+		      //   if (err){
+		      //     console.log(err);
+		      //   }console.log(json);
+		      // });
 
 		      sendgrid.send({
 		        to: email,

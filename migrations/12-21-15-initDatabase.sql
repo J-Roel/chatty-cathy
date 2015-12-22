@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS chattycathy;
-CREATE DATABASE chattycathy;
-
-\c chattycathy;
+-- DROP DATABASE IF EXISTS chattycathy;
+-- CREATE DATABASE chattycathy;
+--
+-- \c chattycathy;
 
 DROP TABLE IF EXISTS chatrooms;
 CREATE TABLE chatrooms ( id SERIAL PRIMARY KEY, key_code VARCHAR(8) );
