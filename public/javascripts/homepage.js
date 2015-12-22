@@ -13,7 +13,7 @@ $('#create-button').on('click', function() {
   $('#create-button').css({
     'color': '#66CD00'
   });
-    
+
   $('#createChatSubmit').on('click', function() {
     console.log(keyCode);
 

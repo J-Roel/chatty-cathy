@@ -8,11 +8,11 @@ var knex = require('knex')({
 
 	client: 'pg',
 	connection: {
-		host: '127.0.0.1',
-		port: 5432,
+		host: process.env.DB_HOST,
+		port: process.env.DB_PORT,
 		user: process.env.DB_USER,
-		password: '',
-		database: 'chattycathy'
+		password: process.env.DB_PASS,
+		database: process.env.DB_NAME
 	}
 });
 
