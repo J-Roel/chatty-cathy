@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
 'use strict';
+   
+   //Get room
+   var roomCode = $('#roomCode').text();
+
    //build palette
-   var clientColor;
+   var clientColor = 'rgb(0,0,0)';
    buildPalette();
 
 
@@ -26,7 +30,6 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
    };
 
    var context = canvas.getContext('2d');
-
    var width   = document.querySelector('#canvasDiv').scrollWidth;
    var height  = document.querySelector('#canvasDiv').scrollHeight;
    var socket  = io.connect();
@@ -77,19 +80,22 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
    });
 
    socket.on('connect', function(data){
-      socket.emit('storeClientInfo');
+      socket.emit('storeClientInfo', {
+         username: 'user1',
+         room: roomCode
+      });
+      
+
    });
 
 function buildPalette() {
 
-      var colors = ['#660000','#bb0000','#ff0000'
-         ,'#006600','#00bb00','#00ff00','#000066','#0000bb','#0000ff'
+      var colors = ['#660000','#bb0000','#ff0000','#006600','#00bb00','#00ff00','#000066','#0000bb','#0000ff'
          ,'#660066','#bb00bb','#ff00ff','#666600','#bbbb00','#ffff00'
-         ,'#006666','#00bbbb','#00ffff','#ff0066'
-         ,'#ff00bb','#ff6600','#ffbb00','#66ff00','#bbff00','#0066ff'
-				 ,'#00bbff','#6600ff','#bb00ff','#543210','#765432','#ba9876'
-				 ,'#fedcba','#000000','#212121','#656565','#989898','#bababa'
-				 ,'#dcdcdc','#ffffff'];
+         ,'#006666','#00bbbb','#00ffff','#ff0066','#ff00bb','#ff6600','#ffbb00','#66ff00','#bbff00','#0066ff'
+			,'#00bbff','#6600ff','#bb00ff','#543210','#765432','#ba9876'
+			,'#fedcba','#000000','#212121','#656565','#989898','#bababa'
+			,'#dcdcdc','#ffffff'];
 
       for (var i = 0; i < colors.length; i++) { //loop through our color palette array
          var aColor = document.createElement('div'); //create a new element for our color
@@ -105,9 +111,21 @@ function buildPalette() {
       if(event.target.className == 'color')
       {
          clientColor = event.target.style.backgroundColor; //get the color
-         console.log("COLOR: ", clientColor);
+      
       }
    };//END FUNCTION
    window.addEventListener('mousedown', selectColor);
 
 });
+
+
+
+
+
+
+
+
+
+
+
+

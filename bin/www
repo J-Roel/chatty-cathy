@@ -95,32 +95,41 @@ function onListening() {
 
 //Setup socket.io
 var line_history = [];
-var chat_history = [];
-var clients = [];
+// var chat_history = [];
+// var clients = [];
+var usernames = {};
 
 io.on('connection', function(socket){
-  
-    
+
+  // when the client emits 'adduser', this listens and executes
   socket.on('storeClientInfo', function(data){
     console.log('user is connected');
-      var clientInfo = new Object();
-      clientInfo.cliendId = socket.id;
-      clients.push(clientInfo);
-      
-      console.log(clientInfo);
+    // var line_history = [];
+    var username = data.username;
+    var roomCode = data.room;
+
+    //Store our socket name
+    socket.username = username;
+    // store the room name in the socket session for this client
+    socket.room = roomCode;
+    // add the client's username to the global list
+    usernames[username] = username;
+    // send client to room
+    socket.join(roomCode);
   });
 
+  
+
+  //Update all clients of a new message
+  socket.on('chat message', function(msg){
+    // io.emit('chat message', msg);
+    io.sockets.in(socket.room).emit('chat message', msg);
+  });
 
 
   // for(var i n chat_history) {
   //   socket.emit('msg', { msg });
   // }
-
-  //Update all clients of a new message
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
-
 
   for (var i in line_history) {
       socket.emit('draw_line', { line: line_history[i] } );
@@ -128,27 +137,38 @@ io.on('connection', function(socket){
 
   socket.on('draw_line', function (data) {
       line_history.push(data.line);
-      io.emit('draw_line', { line: data.line });
-      console.log('Line History: ', line_history);
+      // io.emit('draw_line', { line: data.line });
+      io.sockets.in(socket.room).emit('draw_line', { line: data.line });
   });
   
   socket.on('clearHistory', function(){
       console.log('called clearHistory');
-      io.emit('clearHistory', {});
+      // io.emit('clearHistory', {});
       line_history = [];
+      io.sockets.in(socket.room).emit('clearHistory', {});
   });
 
   socket.on('disconnect', function(data){
-      console.log('--User is disconnected');
-      for( var i=0, len=clients.length;i<len; ++i)
-      {
-        var c = clients[i];
+      console.log('--User is disconnected', socket.room);
 
-        if(c.clientId == socket.id){
-          clients.splice(i, 1);
-          break;
-        }
-      }
+      // remove the username from global usernames list
+      delete usernames[socket.username];
+      // update list of users in chat, client-side
+      // io.sockets.emit('updateusers', usernames);
+      // echo globally that this client has left
+      //socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+      socket.leave(socket.room);
+
+
+      // for( var i=0, len=clients.length;i<len; ++i)
+      // {
+      //   var c = clients[i];
+
+      //   if(c.clientId == socket.id){
+      //     clients.splice(i, 1);
+      //     break;
+      //   }
+      // }
   });
 
 

@@ -133,7 +133,7 @@ router.post('/join', function(req, res, next) {
 					gotoRoom = true;//set goto room to true
 					console.log("Adding you to a room.", gotoRoom, roomCode);
 				} else {
-					console.log('No room of that number found.');
+				//	console.log('No room of that number found.');
 				}
 			}
 		}
