@@ -61,6 +61,8 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
       context.stroke();
    });
 
+   update_room();
+
    function mainLoop() {
       if (mouse.click && mouse.move && mouse.pos_prev) {
          socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev, clientColor] });
@@ -71,6 +73,10 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
    }
    mainLoop();
 
+   function update_room(){
+      socket.emit('update_room');
+   };
+
    socket.on('clearHistory', function (data){
       context.clearRect(0,0, canvas.width, canvas.height);
    });
@@ -80,13 +86,13 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
    });
 
    socket.on('connect', function(data){
-      socket.emit('storeClientInfo', {
+      socket.emit('newClient', {
          username: 'user1',
          room: roomCode
       });
-      
-
    });
+
+
 
 function buildPalette() {
 

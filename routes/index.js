@@ -49,6 +49,7 @@ router.post('/', function(req, res, next) {
 				{
 					doMakeRoom = true;
 					console.log("Making a new room");
+					break;
 				} else {
 					doMakeRoom = false;
 					console.log("Found a room with the same number.");
@@ -76,9 +77,9 @@ router.post('/', function(req, res, next) {
 
 		      sendgrid.send({
 		        to: email,
-		        from: 'noreply@tightbutthole.com',
+		        from: 'noreply@chattycathy.com',
 		        subject: 'Key Code For Chatty Cathy Chatroom!',
-		        text: 'your key code for your chatroom is ' + roomCode
+		        text: 'Your key code for your chatroom is ' + roomCode
 		      }, function(err, json){
 		        if (err){
 		          console.log(err);
@@ -127,10 +128,12 @@ router.post('/join', function(req, res, next) {
 	.then(function(data){
 		for(var i = 0; i < data.length; i++){//goes through array
 			for(var key in data[i]){//goes through object
+				console.log(roomCode, data[i][key])
 				if( roomCode === data[i][key] )//if the same as roomCode
 				{
 					gotoRoom = true;//set goto room to true
 					console.log("Adding you to a room.", gotoRoom, roomCode);
+					break; //exit out of our for loop. We don't need to repeat
 				} else {
 				//	console.log('No room of that number found.');
 				}
@@ -147,8 +150,7 @@ router.post('/join', function(req, res, next) {
 			});
 		} else {
 			res.render('index', {
-				title: 'Chatty Cathy',
-				msg: 'No Room of That Number Found.'
+				title: 'No room found.',
 			});
 		}
 
