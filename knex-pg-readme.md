@@ -50,7 +50,7 @@ INSERT INTO chatrooms (key_code) VALUES('23462561');
 heroku pg:psql DATABASE < data/schema.sql
 heroku pg:psql DATABASE < data/seed.sql
 
-
+psql chattycathy < migrations/12-21-15-initDatabase.sql
 
 
 ###Heroku Postgres
