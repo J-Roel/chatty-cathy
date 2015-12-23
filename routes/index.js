@@ -8,14 +8,13 @@ var knex = require('knex')({
 
 	client: 'pg',
 	connection: {
-		host: '127.0.0.1',
-		port: 5432,
+		host: process.env.DB_HOST,
+		port: process.env.DB_PORT,
 		user: process.env.DB_USER,
-		password: '',
-		database: 'chattycathy'
+		password: process.env.DB_PASS,
+		database: process.env.DB_NAME
 	}
 });
-
 
 
 //Define a function to get our table
@@ -40,7 +39,7 @@ router.post('/', function(req, res, next) {
 
 	var doMakeRoom = false;
 	//Get database info\q
-	
+
 	chatRoom().select('key_code')
 	.then(function(data){
 		console.log(data);
@@ -137,7 +136,7 @@ router.post('/join', function(req, res, next) {
 				}
 			}
 		}
-	
+
 
 		if(gotoRoom)
 		{
@@ -175,7 +174,7 @@ function sendMail(emails){
 var eightDig = function() {
   var code = [];
   var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  for (var i = 0; i < array.length - 2; i++) {
+  for (var i = 0; i < 8; i++) {
     code.push(random(array));
 
   }

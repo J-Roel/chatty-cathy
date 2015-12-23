@@ -16,7 +16,7 @@ $('#create-button').on('click', function() {
 
   $('#createChatSubmit').on('click', function() {
     console.log(keyCode);
-    
+
   });
 });
 

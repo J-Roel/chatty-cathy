@@ -32,7 +32,7 @@ app.use(cookieSession({
     process.env.SESSION_KEY2,
     process.env.SESSION_KEY3
   ]
-}));console.log(process.env.SESSION_KEY3);
+}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
