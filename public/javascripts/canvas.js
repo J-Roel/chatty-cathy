@@ -61,7 +61,7 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
       context.stroke();
    });
 
-   update_room();
+   //update_room();
 
    function mainLoop() {
       if (mouse.click && mouse.move && mouse.pos_prev) {
@@ -73,9 +73,13 @@ var height  = document.querySelector('#canvasDiv').scrollHeight;
    }
    mainLoop();
 
-   function update_room(){
+   socket.on('clearHistory', function (){
       socket.emit('update_room');
-   };
+   });
+
+   $('#update').click(function(){
+      socket.emit('update_room');
+   });
 
    socket.on('clearHistory', function (data){
       context.clearRect(0,0, canvas.width, canvas.height);
