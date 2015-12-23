@@ -98,7 +98,6 @@ var line_history = [];
 var usernames = {};
 
 io.on('connection', function(socket){
-
   // when the client emits 'adduser', this listens and executes
   socket.on('newClient', function(data){
     // var line_history = [];
@@ -119,7 +118,6 @@ io.on('connection', function(socket){
     //clear room and room history
     line_history = [];
     //io.sockets.in(socket.room).emit('clearHistory', {});
-
   });
 
 
